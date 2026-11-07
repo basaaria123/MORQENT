@@ -1,0 +1,843 @@
+import {
+  ProblemItem,
+  ValuePillar,
+  SolutionCapability,
+  IntelligenceLoopStep,
+  ProductModule,
+  AgentInfo,
+  ExperimentComparison,
+} from '@/types';
+
+export const BRAND_TAGLINE =
+  "From Isolated Energy Assets to Intelligent, Coordinated and Self-Optimising Energy Networks.";
+export const BRAND_PILLARS = ["Model", "Predict", "Optimise", "Transform"];
+export const BRAND_SIGNOFF = "Intelligence Today. A Sustainable Tomorrow.";
+export const BRAND_MISSION =
+  "Make distributed energy systems more intelligent, flexible, efficient, resilient and renewable-ready.";
+
+export const CENTRAL_PROBLEM_STATEMENT =
+  "How can distributed energy resources across multiple facilities be represented, predicted, simulated, optimised and coordinated through an intelligent digital-twin platform, while maintaining operational constraints and independently evaluating the results?";
+
+export const PROBLEMS: ProblemItem[] = [
+  {
+    id: 1,
+    title: "Fragmented Energy Intelligence",
+    tagline: "Siloed monitoring without holistic visibility",
+    description:
+      "Solar PV, energy storage, EV chargers, HVAC systems, and building automation suites run on isolated proprietary portals with zero joint context.",
+    consequence: "Operators miss cross-asset synergies and operate blind to systemic strain.",
+    iconName: "SplitSquareVertical",
+  },
+  {
+    id: 2,
+    title: "Unpredictable Demand & Generation",
+    tagline: "Static setpoints fail under renewable volatility",
+    description:
+      "Solar intermittency and sudden load spikes cause unpredicted tariff penalties, peak demand charges, and costly grid dependency.",
+    consequence: "Reactive interventions occur after cost spikes or voltage violations have already happened.",
+    iconName: "TrendingDown",
+  },
+  {
+    id: 3,
+    title: "Inefficient Coordination",
+    tagline: "Isolated optimization creates conflicting incentives",
+    description:
+      "Adjacent facilities on shared feeders export solar simultaneously, depressing export value while creating local grid congestion.",
+    consequence: "Clean energy is curtailed while neighboring buildings burn fossil fuels to meet peak demand.",
+    iconName: "Shuffle",
+  },
+  {
+    id: 4,
+    title: "Inadequate Scenario Testing",
+    tagline: "Operating live assets without safe sandboxes",
+    description:
+      "Asset managers cannot evaluate new dynamic tariffs, extreme weather events, or equipment outages prior to real-world deployment.",
+    consequence: "High operational risk and resistance to adopting flexible energy strategies.",
+    iconName: "FlaskConicalOff",
+  },
+  {
+    id: 5,
+    title: "Unverified Flexibility",
+    tagline: "Unsubstantiated claims without auditable proof",
+    description:
+      "Flexibility markets and sustainability auditors lack transparent, verifiable accounting of whether storage dispatch genuinely shifted load or beat baselines.",
+    consequence: "Erosion of trust between asset owners, energy aggregators, and regulatory bodies.",
+    iconName: "ShieldAlert",
+  },
+];
+
+export const WHY_IT_MATTERS: ValuePillar[] = [
+  {
+    pillar: "Technical",
+    headline: "Systemic Reliability & Grid Harmony",
+    points: [
+      "Dynamic voltage, frequency, and thermal boundary enforcement",
+      "Seamless integration of intermittent solar PV and fluctuating EV loads",
+      "Robust state estimation bridging sensor noise and missing telemetry",
+    ],
+    metricLabel: "Operational Boundary",
+    metricBadge: "Zero Hard-Constraint Violations",
+  },
+  {
+    pillar: "Economic",
+    headline: "Compound Operational Cost Reduction",
+    points: [
+      "Targeted peak-shaving to eliminate punitive capacity charges",
+      "Real-time tariff arbitrage across dynamic wholesale and time-of-use rates",
+      "Extension of battery calendar life through smart cycle-depth preservation",
+    ],
+    metricLabel: "Cost Trajectory",
+    metricBadge: "Optimised Net Operating Cost",
+  },
+  {
+    pillar: "Environmental",
+    headline: "Accelerated Decarbonisation",
+    points: [
+      "Maximised onsite renewable self-consumption, eliminating curtailment",
+      "Marginal grid carbon intensity-aware battery charging and load scheduling",
+      "Verifiable, auditable Scope 2 emissions reduction metrics for reporting",
+    ],
+    metricLabel: "Renewable Utilization",
+    metricBadge: "Net-Zero Aligned",
+  },
+  {
+    pillar: "Operational",
+    headline: "Human-Supervised Autonomy",
+    points: [
+      "Elimination of tedious manual spreadsheet adjustments and guesswork",
+      "Safe sandboxed 'what-if' simulation before committing dispatch schedules",
+      "Clear human-in-the-loop approval gates for mission-critical dispatches",
+    ],
+    metricLabel: "Workflow Paradigm",
+    metricBadge: "Closed-Loop Governance",
+  },
+];
+
+export const SOLUTION_CAPABILITIES: SolutionCapability[] = [
+  {
+    capability: "Predictive Intelligence",
+    badge: "Anticipate",
+    questionAnswered: "What will our generation, demand, and grid tariffs look like over the next 24 to 72 hours?",
+    mechanism: "High-resolution probabilistic forecasting fusing physical asset models, numerical weather data, and occupancy patterns.",
+    deliverable: "Quantified uncertainty bands and multi-horizon demand/generation trajectories.",
+    icon: "LineChart",
+  },
+  {
+    capability: "Prescriptive Optimisation",
+    badge: "Schedule",
+    questionAnswered: "What is the mathematically optimal schedule for our batteries, EV chargers, and flexible HVAC loads?",
+    mechanism: "Constraint-aware Mixed-Integer Linear Programming (MILP) solving cost, peak demand, and battery degradation trade-offs.",
+    deliverable: "Feasible setpoints adhering to thermal, electrical, and contractual boundaries.",
+    icon: "Cpu",
+  },
+  {
+    capability: "Scenario Simulation",
+    badge: "Evaluate",
+    questionAnswered: "What happens if a major transformer fails, a heatwave hits, or dynamic tariff quadruples?",
+    mechanism: "High-fidelity digital twin simulation testing contingencies without risking live infrastructure.",
+    deliverable: "Stress-test scorecards and preemptive contingency dispatch strategies.",
+    icon: "Layers",
+  },
+  {
+    capability: "Coordinated Operation",
+    badge: "Harmonise",
+    questionAnswered: "How can multiple adjacent facilities avoid competing for local substation headroom?",
+    mechanism: "Multi-agent coordination protocol negotiating mutual constraints and shared feeder capacities.",
+    deliverable: "Coordinated multi-site dispatch avoiding collective peak charges and export bottlenecks.",
+    icon: "Network",
+  },
+  {
+    capability: "Verification Ledger",
+    badge: "Prove",
+    questionAnswered: "Did the coordinated optimization actually deliver value over business-as-usual operation?",
+    mechanism: "Independent deterministic counterfactual engine comparing actual performance against calibrated persistence baselines.",
+    deliverable: "Tamper-evident flexibility accounting and auditable savings proof.",
+    icon: "ShieldCheck",
+  },
+];
+
+export const INTELLIGENCE_LOOP: IntelligenceLoopStep[] = [
+  {
+    step: 1,
+    name: "Observe",
+    category: "Input",
+    tagline: "Continuous telemetry ingestion",
+    description: "Ingests sub-minute telemetry from smart meters, solar inverters, battery management systems, EVSE, and weather sensors.",
+    technicalArtifact: "Raw high-frequency telemetry streams & IoT message queues",
+    cycleTime: "Continuous (< 5s)",
+  },
+  {
+    step: 2,
+    name: "Update",
+    category: "Model",
+    tagline: "Digital twin state reconciliation",
+    description: "Reconciles live sensor streams with physical twin models, computing state of charge (SoC), thermal inertia, and circuit impedances.",
+    technicalArtifact: "Synchronized digital twin state vector",
+    cycleTime: "1 minute",
+  },
+  {
+    step: 3,
+    name: "Predict",
+    category: "Model",
+    tagline: "Probabilistic multi-horizon forecasting",
+    description: "Projects solar irradiance, facility load profiles, dynamic grid pricing, and renewable curtailment risks across 24h-72h horizons.",
+    technicalArtifact: "Probabilistic forecast vectors with 10th-90th percentiles",
+    cycleTime: "15 minutes",
+  },
+  {
+    step: 4,
+    name: "Simulate",
+    category: "Model",
+    tagline: "Multi-scenario contingency testing",
+    description: "Simulates multiple operational futures, evaluating extreme weather shocks, grid outages, and tariff changes against the twin.",
+    technicalArtifact: "Monte Carlo scenario risk matrix & resilience bounds",
+    cycleTime: "15 minutes",
+  },
+  {
+    step: 5,
+    name: "Optimise",
+    category: "Decision",
+    tagline: "Constraint-aware LP/MILP solver",
+    description: "Formulates and solves rigorous mathematical optimisation balancing peak shaving, energy arbitrage, and equipment health.",
+    technicalArtifact: "Globally optimal dispatch schedule & dual prices",
+    cycleTime: "15 - 60 minutes",
+  },
+  {
+    step: 6,
+    name: "Authorise",
+    category: "Decision",
+    isGate: true,
+    tagline: "Human approval & safety policy gate",
+    description: "Deterministic safety checks validate hard bounds. High-impact or threshold-crossing dispatches route to the human operator console.",
+    technicalArtifact: "Signed cryptographically auditable authorization token",
+    cycleTime: "Synchronous policy check",
+  },
+  {
+    step: 7,
+    name: "Act",
+    category: "Action",
+    tagline: "Supervised setpoint dispatch",
+    description: "Dispatches validated setpoints to building management systems, inverter controllers, and battery inverters over industrial protocols.",
+    technicalArtifact: "Modbus/BACnet/OCPP/MQTT control commands",
+    cycleTime: "Sub-second execution",
+  },
+  {
+    step: 8,
+    name: "Verify",
+    category: "Verification",
+    tagline: "Independent baseline comparison",
+    description: "Evaluates executed outcomes against calibrated counterfactual baselines, verifying genuine peak reduction and energy savings.",
+    technicalArtifact: "Auditable performance ledger & variance breakdown",
+    cycleTime: "Post-dispatch hourly",
+  },
+  {
+    step: 9,
+    name: "Learn",
+    category: "Model",
+    tagline: "Closing the loop with parameter refinement",
+    description: "Feeds residual errors back into asset decay models, load models, and forecast weights to continuously improve future accuracy.",
+    technicalArtifact: "Updated asset state parameters & Bayesian weights",
+    cycleTime: "Daily continuous",
+  },
+];
+
+export const PRODUCT_MODULES: ProductModule[] = [
+  {
+    id: "twin-builder",
+    name: "Twin Builder",
+    tagline: "Asset-to-network physics-informed digital twins",
+    role: "Constructs semantic, parameterised digital twins of batteries, solar PV, HVAC, EV fleets, and circuit topologies from engineering drawings and telemetry.",
+    features: [
+      "Standardised CIM / Brick schema energy taxonomy",
+      "Physical degradation & thermal model calibration",
+      "Rapid template onboarding for campuses & plants",
+    ],
+    output: "Standardised live digital twin model",
+    badge: "Foundation",
+  },
+  {
+    id: "forecast-engine",
+    name: "Forecast Engine",
+    tagline: "Physics-guided neural prediction",
+    role: "Delivers granular forecasts for onsite solar yield, building thermal load, EV charging occupancy, and grid tariff pricing.",
+    features: [
+      "Ensemble numerical weather prediction (NWP) integration",
+      "Calendar, exam, and industrial shift schedule conditioning",
+      "Explicit uncertainty quantification with confidence intervals",
+    ],
+    output: "Multi-horizon rolling probabilistic forecasts",
+    badge: "Predictive",
+  },
+  {
+    id: "scenario-lab",
+    name: "Scenario Lab",
+    tagline: "Sandboxed simulation & stress testing",
+    role: "Provides an interactive sandbox to test tariff redesigns, severe weather shocks, asset additions, and grid outages without touching live assets.",
+    features: [
+      "Fast-forward multi-year digital twin simulation",
+      "Capex evaluation for solar & storage sizing",
+      "Grid contingency & islanding feasibility checks",
+    ],
+    output: "Scenario impact reports & risk metrics",
+    badge: "Simulation",
+  },
+  {
+    id: "optimiser",
+    name: "Optimiser",
+    tagline: "Mathematical LP/MILP schedule engine",
+    role: "Computes provably optimal 24h dispatch vectors for energy storage, flexible thermostatic loads, and controllable EV charging stations.",
+    features: [
+      "Rigorous mathematical optimization (LP/MILP)",
+      "Strict enforcement of physical & electrical constraints",
+      "Joint optimization of energy cost & battery cycle life",
+    ],
+    output: "Optimal setpoint schedules & reserve margins",
+    badge: "Prescriptive",
+  },
+  {
+    id: "approval-console",
+    name: "Approval Console",
+    tagline: "Human-in-the-loop operational oversight",
+    role: "Gives facility engineers full visibility and control with automated policy checks, override toggles, and multi-tier authorization workflows.",
+    features: [
+      "Visual timeline of upcoming dispatch actions",
+      "One-click emergency fallback to local safety control",
+      "Granular role-based governance & audit logging",
+    ],
+    output: "Cryptographic approval audit trail",
+    badge: "Governance",
+  },
+  {
+    id: "verification-ledger",
+    name: "Verification Ledger",
+    tagline: "Deterministic performance accounting",
+    role: "Calculates savings and carbon reductions against an immutable counterfactual baseline so stakeholders have verifiable proof of value.",
+    features: [
+      "Rigorous IPMVP-aligned counterfactual baseline models",
+      "Peak demand reduction verification",
+      "Audit-ready exports for ESG and green finance",
+    ],
+    output: "Certified flexibility & savings statements",
+    badge: "Proof",
+  },
+];
+
+export const DIGITAL_TWIN_HIERARCHY = [
+  {
+    level: "Level 1",
+    name: "Asset Twin",
+    badge: "Component Fidelity",
+    description: "High-resolution physics and electro-chemical models of individual DER components.",
+    subcomponents: [
+      "Battery Storage: State of Charge (SoC), State of Health (SoH), C-rate limits, thermal degradation curve",
+      "Solar PV Arrays: Inverter efficiency curves, irradiance angle, temperature derating",
+      "Flexible HVAC: Thermal inertia, indoor temperature deadbands, chiller COP curves",
+      "EV Chargers: Plug-in probability, vehicle battery capacities, departure deadlines",
+    ],
+  },
+  {
+    level: "Level 2",
+    name: "Facility Twin",
+    badge: "Site Integration",
+    description: "Aggregation of multi-asset dynamics behind the customer meter, matching internal supply and demand.",
+    subcomponents: [
+      "Point of Common Coupling (PCC) import/export metering",
+      "Internal sub-distribution feeder loading & transformer thermal headroom",
+      "Building occupancy schedules, comfort constraints, and critical load protection",
+      "Local site energy management policy and tariff rules",
+    ],
+  },
+  {
+    level: "Level 3",
+    name: "Network Twin",
+    badge: "Multi-Site Coordination",
+    description: "Inter-facility spatial network linking multiple sites sharing a distribution substation or energy community.",
+    subcomponents: [
+      "Shared substation capacity constraints and line congestion monitoring",
+      "Cross-facility energy balancing and virtual microgrid power flows",
+      "Coordinated peak-shaving to avoid coincident demand spikes",
+      "Wholesale flexibility bidding and ancillary service response",
+    ],
+  },
+];
+
+export const NINE_AGENTS: AgentInfo[] = [
+  // SENSE & MODEL
+  {
+    id: "agent-1",
+    name: "Asset Modeling Agent",
+    group: "SENSE & MODEL",
+    role: "Maintains calibrated physical parameter models of storage, solar, and building envelope thermodynamics.",
+    inputs: ["Raw telemetry", "Manufacturer nameplate data", "Historical degradation curves"],
+    outputs: ["Calibrated asset model parameters", "Health & degradation coefficients"],
+    governance: "Physics-constrained regression & parameter boundary checks",
+  },
+  {
+    id: "agent-2",
+    name: "Forecast Agent",
+    group: "SENSE & MODEL",
+    role: "Produces multi-horizon rolling forecasts of solar yield, building demand, and market pricing.",
+    inputs: ["NWP weather forecasts", "Calendar events", "Smart meter telemetry history"],
+    outputs: ["24h-72h probabilistic forecast distributions with confidence bands"],
+    governance: "Ensemble verification against persistence benchmarks",
+  },
+  {
+    id: "agent-3",
+    name: "State Estimator Agent",
+    group: "SENSE & MODEL",
+    role: "Synthesises disparate sensor data into a coherent, noise-filtered snapshot of the full system state.",
+    inputs: ["Sub-second meter readings", "Inverter state frames", "BMS register reads"],
+    outputs: ["Reconciled state vectors (SoC, voltages, temperatures, power flows)"],
+    governance: "Kalman filtering and physical law conservation checks",
+  },
+
+  // DECIDE
+  {
+    id: "agent-4",
+    name: "Optimization Agent",
+    group: "DECIDE",
+    role: "Formulates and executes the mathematical LP/MILP problem to generate schedule setpoints.",
+    inputs: ["State vectors", "Forecast vectors", "Tariff structures", "Physical constraints"],
+    outputs: ["Optimal 24h asset setpoint vectors (charge/discharge kW, HVAC setpoints)"],
+    governance: "Deterministic mathematical solver with proven convergence criteria",
+  },
+  {
+    id: "agent-5",
+    name: "Scenario Simulator Agent",
+    group: "DECIDE",
+    role: "Runs fast-forward 'what-if' simulations across alternative operating conditions and stress scenarios.",
+    inputs: ["Candidate schedules", "Weather extremes", "Equipment outage scenarios"],
+    outputs: ["Risk profiles, contingency feasibility ratings, resilience scores"],
+    governance: "Isolated digital twin execution sandbox without live actuators",
+  },
+  {
+    id: "agent-6",
+    name: "Coordination Agent",
+    group: "DECIDE",
+    role: "Harmonises dispatch schedules across adjacent facilities sharing distribution constraints.",
+    inputs: ["Individual facility schedules", "Shared substation headroom", "Grid tariffs"],
+    outputs: ["Coordinated cross-site setpoints preventing coincident grid peaks"],
+    governance: "Consensus protocol with strict privacy-preserving data exchange",
+  },
+
+  // PROVE
+  {
+    id: "agent-7",
+    name: "Constraint Safety Agent",
+    group: "PROVE",
+    role: "Performs deterministic, non-negotiable safety validation on every candidate schedule prior to dispatch.",
+    inputs: ["Candidate dispatch vectors", "Hard thermal/voltage limits", "Battery warranties"],
+    outputs: ["Binary safety certification or rejection with constraint violation cause"],
+    governance: "Zero-tolerance deterministic rules engine (never overridden by ML)",
+  },
+  {
+    id: "agent-8",
+    name: "Verification Agent",
+    group: "PROVE",
+    role: "Quantifies actual financial, energetic, and carbon outcomes against verified counterfactual baselines.",
+    inputs: ["Executed power profiles", "Calibrated baseline models", "Actual tariff rates"],
+    outputs: ["Auditable performance certificates, verified peak-shaving magnitude"],
+    governance: "IPMVP standard counterfactual comparison framework",
+  },
+  {
+    id: "agent-9",
+    name: "Continuous Learning Agent",
+    group: "PROVE",
+    role: "Monitors forecast residuals and optimization gaps to update twin parameters for future cycles.",
+    inputs: ["Forecast errors", "Model discrepancies", "Post-dispatch verification data"],
+    outputs: ["Parameter fine-tuning weights and model retraining triggers"],
+    governance: "Bounded adaptive learning with rollback safeguards",
+  },
+];
+
+export const AGENT_DESIGN_RULE =
+  "Agents orchestrate tools and models; they do not invent numerical operating decisions. Mathematical optimisation produces the schedules, and deterministic safety checks validate them before any action.";
+
+export const EXPERIMENTS_COMPARISON: ExperimentComparison[] = [
+  {
+    key: "A",
+    name: "Conventional Baseline",
+    forecastInformed: false,
+    mathematicalOptimisation: false,
+    crossFacilityCoordination: false,
+    agentOrchestration: false,
+    independentVerification: false,
+    description: "Standard timer-based rules and reactive threshold controllers operating independently at each site.",
+    strengths: "Simple to implement; standard factory defaults.",
+    limitations: "Causes coincident peak demand spikes, battery degradation, and solar curtailment during excess generation.",
+  },
+  {
+    key: "B",
+    name: "Independent Optimisation",
+    forecastInformed: true,
+    mathematicalOptimisation: true,
+    crossFacilityCoordination: false,
+    agentOrchestration: false,
+    independentVerification: false,
+    description: "Individual sites run local LP/MILP optimization without awareness of neighbors or shared substation headroom.",
+    strengths: "Reduces individual site utility bills according to local tariffs.",
+    limitations: "Assets export or import simultaneously, creating grid bottlenecks and missing inter-site arbitrage.",
+  },
+  {
+    key: "C",
+    name: "Centralised Monolithic Optimisation",
+    forecastInformed: true,
+    mathematicalOptimisation: true,
+    crossFacilityCoordination: true,
+    agentOrchestration: false,
+    independentVerification: false,
+    description: "A single monolithic solver solves all facilities simultaneously with shared constraints.",
+    strengths: "Theoretically achieves global mathematical optimum under static assumptions.",
+    limitations: "Brittle computational bottleneck; single point of failure; requires sharing private internal operational data.",
+  },
+  {
+    key: "D",
+    name: "MORQENT Multi-Agent Coordination",
+    forecastInformed: true,
+    mathematicalOptimisation: true,
+    crossFacilityCoordination: true,
+    agentOrchestration: true,
+    independentVerification: true,
+    description: "Hierarchical agent architecture orchestrating local mathematical optimization with multi-site coordination and independent verification.",
+    strengths: "Scalable, resilient, privacy-preserving, respects individual site autonomy, and independently proves value.",
+    limitations: "Requires coordinated communication fabric and calibrated digital twins.",
+  },
+];
+
+export const EXPERIMENT_HYPOTHESIS =
+  "The study tests whether D adds measurable value over C. No results are claimed, and a null result will be reported as such.";
+
+export const ACCEPTANCE_CRITERIA = [
+  {
+    title: "Zero Hard-Constraint Violations",
+    desc: "100% adherence to thermal, voltage, battery SoC bounds, and occupant comfort limits under all operational states.",
+  },
+  {
+    title: "Forecasts Beat Persistence Baselines",
+    desc: "Predictive engine consistently out-predicts standard naive and persistence baselines across all horizons.",
+  },
+  {
+    title: "Reproducibility & Open Benchmarking",
+    desc: "Simulation workflows, synthetic datasets, and verification scripts are fully deterministic and re-runnable.",
+  },
+  {
+    title: "Fair Comparison Environment",
+    desc: "Identical facility models, weather series, and tariff rates are applied uniformly across Experiments A, B, C, and D.",
+  },
+  {
+    title: "Traceable & Auditable Verification",
+    desc: "Every flexibility dispatch and reported saving is cryptographically tied to raw telemetry and deterministic math.",
+  },
+];
+
+export const MVP_FACILITIES = [
+  {
+    name: "University Campus",
+    profile: "Mixed educational, research labs, student housing & EV parking",
+    assets: [
+      "1.2 MW Solar PV array (rooftop + canopy)",
+      "2.0 MWh / 1.0 MW Li-ion Battery Storage",
+      "Central chiller plant with 2,400 ton-hr thermal storage",
+      "40 Level-2 EV charging bays with smart scheduling",
+    ],
+    challenges: "Drastic weekday vs weekend load swings, high seasonal HVAC demand, research lab critical power requirements.",
+  },
+  {
+    name: "Industrial Manufacturing Facility",
+    profile: "Continuous 3-shift process manufacturing & heavy machinery",
+    assets: [
+      "800 kW High-tilt Industrial Solar PV",
+      "1.5 MWh / 750 kW Battery Storage System",
+      "Flexible compressed air & cold-storage buffer loads",
+      "Heavy inductive motor drives & power-factor correction banks",
+    ],
+    challenges: "Punitive peak demand charges, motor start-up surges, zero tolerance for process interruption.",
+  },
+  {
+    name: "Commercial Office Building",
+    profile: "12-story Grade-A multi-tenant commercial office tower",
+    assets: [
+      "350 kW Rooftop Solar PV",
+      "750 kWh / 300 kW Building Storage System",
+      "Dynamic Variable Air Volume (VAV) HVAC with zone control",
+      "Smart lighting & smart elevator regenerative drives",
+    ],
+    challenges: "Strict tenant thermal comfort SLAs, predictable 8am-6pm weekday demand profile with sharp arrival peaks.",
+  },
+];
+
+export const MVP_CAPABILITIES = [
+  "High-fidelity digital twin simulation of 3 representative facilities",
+  "Sub-hourly physical asset modeling (solar, battery, thermal, EV)",
+  "Inter-facility network twin modeling shared substation feeder capacity",
+  "Rolling 24-hour solar generation and facility load forecasting",
+  "MILP-based local battery and flexible load schedule optimization",
+  "Multi-agent coordination protocol negotiating joint feeder constraints",
+  "Deterministic safety constraint verification engine",
+  "Human-in-the-loop operator console with override safeguards",
+  "Side-by-side Experiment A vs B vs C vs D benchmark execution",
+  "Automated counterfactual performance and flexibility verification ledger",
+];
+
+export const TARGET_CUSTOMERS = [
+  {
+    segment: "University Campuses",
+    tier: "Beachhead",
+    rationale: "Motivated by ambitious net-zero commitments, single administrative ownership across diverse assets, and existing smart metering.",
+    valueProp: "Unify campus DERs, demonstrate climate leadership, and lower annual power bills.",
+  },
+  {
+    segment: "Industrial Facilities",
+    tier: "Beachhead",
+    rationale: "Significant exposure to extreme peak-demand capacity charges, high energy intensity, and dedicated on-site engineering teams.",
+    valueProp: "Shave peak demand charges without risking production throughput or machinery reliability.",
+  },
+  {
+    segment: "Commercial Real Estate",
+    tier: "Early Adopter",
+    rationale: "Grade-A office towers seeking green building certifications (LEED, NABERS) and tenant ESG alignment.",
+    valueProp: "Optimize tenant comfort against dynamic tariffs and monetize building battery assets.",
+  },
+  {
+    segment: "Distribution Utilities",
+    tier: "Later Stage",
+    rationale: "Facing grid congestion, transformer overloading, and substation upgrade deferral needs.",
+    valueProp: "Coordinate behind-the-meter resources to provide non-wires alternatives (NWA).",
+  },
+  {
+    segment: "Energy Aggregators & VPPs",
+    tier: "Later Stage",
+    rationale: "Need verified, reliable flexibility to bid into wholesale capacity, frequency, and balancing markets.",
+    valueProp: "Verifiable, auditable dispatch execution backed by deterministic constraint guarantees.",
+  },
+];
+
+export const STAKEHOLDERS = [
+  { role: "Facility & Energy Managers", focus: "Operational continuity, zero nuisance alerts, simple manual override capability." },
+  { role: "CFOs & Sustainability Leaders", focus: "Verifiable cost reduction, auditable Scope 2 decarbonisation metrics, clear ROI." },
+  { role: "Distribution System Operators (DSOs)", focus: "Feeder stability, non-coincident peak compliance, visibility into DER behavior." },
+  { role: "Regulators & Standards Bodies", focus: "Fairness, consumer protection, transparency, reproducible measurement." },
+  { role: "Equipment OEMs & System Integrators", focus: "Standard open protocols (Modbus, BACnet, OCPP), battery warranty protection." },
+];
+
+export const MARKET_OPPORTUNITY = {
+  tam: {
+    label: "Total Addressable Market (TAM)",
+    desc: "Global distributed energy resource management, commercial digital twin platforms, and microgrid intelligence software.",
+    badge: "Values to be sourced",
+  },
+  sam: {
+    label: "Serviceable Addressable Market (SAM)",
+    desc: "Enterprise energy management and DER optimization software across high-tariff commercial, industrial, and campus sectors in OECD markets.",
+    badge: "Values to be sourced",
+  },
+  som: {
+    label: "Serviceable Obtainable Market (SOM)",
+    desc: "Initial beachhead deployment across progressive multi-facility campuses and industrial microgrids piloting verified DER coordination.",
+    badge: "Values to be sourced",
+  },
+};
+
+export const BUSINESS_MODEL_TIMELINE = [
+  {
+    stage: "Stage 1: Foundation",
+    stream: "Software-as-a-Service (SaaS)",
+    model: "Annual platform subscriptions based on connected asset capacity (kW/kWh) and number of facility digital twins.",
+    status: "Immediate Launch Target",
+  },
+  {
+    stage: "Stage 2: Enterprise Growth",
+    stream: "Enterprise Licensing & Twin Engineering",
+    model: "Custom on-prem/hybrid deployments, specialized asset twin calibration, and bespoke integration engineering.",
+    status: "Year 1 - Year 2 Target",
+  },
+  {
+    stage: "Stage 3: Advanced Intelligence",
+    stream: "Energy Intelligence & Scenario Services",
+    model: "Recurring subscriptions for predictive weather feeds, tariff optimization models, and Capex scenario sandboxing.",
+    status: "Year 2 - Year 3 Target",
+  },
+  {
+    stage: "Stage 4: Market Participation",
+    stream: "Flexibility Management Fees",
+    model: "Shared-value or transaction fees for verified wholesale market flexibility dispatch (subject to jurisdiction and regulation).",
+    status: "Future Regulated Horizon",
+  },
+];
+
+export const GTM_STAGES = [
+  { step: "01", name: "Beachhead", focus: "Engage progressive university campuses and energy-intensive manufacturing sites with existing solar and storage assets." },
+  { step: "02", name: "Prove", focus: "Deploy the MORQENT digital twin in shadow/simulation mode to rigorously validate forecast accuracy and counterfactual value." },
+  { step: "03", name: "Expand", focus: "Activate human-supervised dispatch across additional campus facilities and industrial buildings within the same network node." },
+  { step: "04", name: "Partner", focus: "Form strategic alliances with energy service companies (ESCOs), BMS integrators, and battery OEMs as distribution channels." },
+  { step: "05", name: "Scale", focus: "Federate multi-campus and municipal microgrid clusters into a unified distributed energy intelligence infrastructure." },
+];
+
+export const ROADMAP_PHASES = [
+  {
+    phase: "Phase 1",
+    timeframe: "Month 1 (Weeks 1 - 4)",
+    title: "Four-Week Prototype",
+    deliverables: [
+      "Standardised CIM/Brick schema digital twin builder",
+      "Synthetic 3-facility simulation testbed (Campus, Industry, Commercial)",
+      "Single-site baseline vs LP battery dispatch model",
+      "Interactive operator demo console",
+    ],
+  },
+  {
+    phase: "Phase 2",
+    timeframe: "Months 2 - 4",
+    title: "Multi-Facility Coordination",
+    deliverables: [
+      "Full 9-agent architecture implementation",
+      "Coordinated cross-site feeder constraint solver",
+      "Automated counterfactual verification ledger",
+      "Comprehensive Experiment A-D benchmarking report",
+    ],
+  },
+  {
+    phase: "Phase 3",
+    timeframe: "Months 5 - 9",
+    title: "Real-World Shadow Pilots",
+    deliverables: [
+      "Telemetry integration with live campus smart meters & inverters",
+      "Shadow-mode execution: predictions vs actuals without direct actuation",
+      "Human-in-the-loop authorization console deployment",
+      "Independent 3rd-party engineering validation",
+    ],
+  },
+  {
+    phase: "Phase 4",
+    timeframe: "Months 10 - 18",
+    title: "Distributed Infrastructure",
+    deliverables: [
+      "Supervised closed-loop control actuation on partner sites",
+      "Multi-tenant enterprise cloud platform with zero-trust security",
+      "Flexibility market bidding interface for aggregators",
+      "Autonomous self-healing digital twin fleet",
+    ],
+  },
+];
+
+export const NINETY_DAY_PLAN = [
+  {
+    days: "Days 1 - 30",
+    objective: "Twin Architecture & Core Solver",
+    keyTasks: [
+      "Finalise mathematical formulation of the MILP battery and flexible load scheduler",
+      "Build high-fidelity synthetic profiles for Campus, Factory, and Office",
+      "Deploy the web-based simulation environment and validation testbench",
+    ],
+  },
+  {
+    days: "Days 31 - 60",
+    objective: "Multi-Agent Coordination & Safety Gate",
+    keyTasks: [
+      "Implement the 9 agent roles and deterministic Constraint Safety Agent",
+      "Run automated Experiment A, B, C, D comparative simulations",
+      "Calibrate baseline persistence models and IPMVP verification algorithms",
+    ],
+  },
+  {
+    days: "Days 61 - 90",
+    objective: "Beachhead Pilot Engagement & Review",
+    keyTasks: [
+      "Deliver the validated technical whitepaper and reproducible benchmark dataset",
+      "Present shadow pilot deployment plan to 3 beachhead university/industrial candidates",
+      "Convene technical advisory review with distribution grid specialists",
+    ],
+  },
+];
+
+export const RESPONSIBLE_AI_PILLARS = [
+  {
+    title: "Human-Supervised Decisions",
+    tagline: "Always under operator authority",
+    desc: "The platform operates with an explicit human-in-the-loop gate ('Authorise'). High-impact schedules require affirmative supervisor approval before actuation.",
+  },
+  {
+    title: "Constraint Validation",
+    tagline: "Physics and safety are non-negotiable",
+    desc: "Every candidate dispatch is validated against strict deterministic physical, thermal, and voltage bounds. Machine learning never overrides physical laws.",
+  },
+  {
+    title: "Complete Auditability",
+    tagline: "Immutable operational provenance",
+    desc: "All telemetry, forecasts, optimization formulations, operator authorizations, and dispatch setpoints are logged in an immutable, cryptographically signed ledger.",
+  },
+  {
+    title: "Industrial Cybersecurity",
+    tagline: "Zero-trust edge-to-cloud fabric",
+    desc: "End-to-end TLS 1.3 encryption, role-based access control (RBAC), segregated OT/IT network proxies, and air-gap compatible local fallbacks.",
+  },
+  {
+    title: "Progressive Autonomy",
+    tagline: "Earned trust over verified milestones",
+    desc: "Facilities advance through structured autonomy tiers: Shadow Simulation → Advisory Recommendations → Supervised Control → Fully Autonomous Closed Loop.",
+  },
+];
+
+export const TECH_STACK_LAYERS = [
+  {
+    layer: "Layer 5",
+    name: "Experience & Governance",
+    techs: ["Next.js (App Router)", "Three.js / WebGL", "Tailwind CSS", "Framer Motion", "Operator Console UI", "Audit Visualiser"],
+    description: "Immersive digital twin visualisation, real-time telemetry HUD, scenario sandboxing, and supervisor authorization console.",
+  },
+  {
+    layer: "Layer 4",
+    name: "Agents & Orchestration",
+    techs: ["Multi-Agent Coordination Fabric", "Deterministic Safety Kernel", "Event Bus / Redis Streams", "Task Orchestrator"],
+    description: "Nine specialised agents managing sense, predict, optimize, and verification pipelines with deterministic safety interlocks.",
+  },
+  {
+    layer: "Layer 3",
+    name: "Intelligence & Mathematical Engines",
+    techs: ["Mixed-Integer Linear Programming (HiGHS / CBC / Gurobi)", "Physics-Informed Neural Networks", "Probabilistic Forecasters", "Monte Carlo Simulator"],
+    description: "Constraint-aware mathematical solvers generating provably optimal dispatch schedules and uncertainty-bounded predictions.",
+  },
+  {
+    layer: "Layer 2",
+    name: "Digital Twin & Semantic State",
+    techs: ["CIM (IEC 61970/61968)", "Brick Schema", "TimescaleDB / Vector State Store", "Physical Battery & Thermal ODE Models"],
+    description: "Standardised semantic graph linking assets, facilities, electrical circuits, and live operational state vectors.",
+  },
+  {
+    layer: "Layer 1",
+    name: "Edge Ingestion & Industrial Protocols",
+    techs: ["Modbus TCP/RTU", "BACnet/IP", "OCPP 2.0.1", "MQTT / Sparkplug B", "TLS 1.3 Edge Gateways", "mTLS Authentication"],
+    description: "Secure, real-time bidirectional telemetry and control links into BMS, inverters, meters, and battery management systems.",
+  },
+];
+
+export const RISKS_AND_MITIGATIONS = [
+  {
+    risk: "Telemetry Latency & Missing Sensor Data",
+    mitigation: "State Estimator Agent deploys Kalman filtering, physical conservation laws, and robust fallback persistence models to bridge gaps gracefully.",
+  },
+  {
+    risk: "Optimization Solver Timeout on Complex Networks",
+    mitigation: "Hierarchical decomposition: individual facilities solve localized MILP in parallel; central coordinator negotiates boundary adjustments only.",
+  },
+  {
+    risk: "Equipment Warranty Invalidation",
+    mitigation: "OEM operating constraints, cycle depth limits, and thermal boundaries are hard-coded as non-violable constraints in the optimization matrix.",
+  },
+  {
+    risk: "Operator Distrust & Resistance to Autonomy",
+    mitigation: "Progressive autonomy staging starting in passive shadow mode, with plain-language explanation of why schedules were chosen and 1-click override.",
+  },
+  {
+    risk: "Regulatory Barriers in Local Electricity Markets",
+    mitigation: "Platform delivers immediate internal behind-the-meter savings (peak shaving, self-consumption) regardless of external market readiness.",
+  },
+  {
+    risk: "Cybersecurity Vulnerability in Actuation Links",
+    mitigation: "Segregated unidirectional data diodes, command whitelisting, rate-limiting on setpoint adjustments, and hardware-level interlocks.",
+  },
+];
+
+export const FOUNDER_THESIS =
+  "Distributed energy value is created not by owning more assets but by operating them intelligently and proving the outcome.";
+
